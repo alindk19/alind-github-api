@@ -16,7 +16,9 @@ function App() {
     const [isLoading, setIsLoading] = useState(false);
     const [page, setPage] = useState(1);
     const perpage = 4;
-
+    var users_added = JSON.parse(localStorage.getItem("users"))
+        ? JSON.parse(localStorage.getItem("users")).length
+        : 0;
     useEffect(() => {
         const fetchUsers = async () => {
             setIsLoading(true);
@@ -65,10 +67,7 @@ function App() {
             <header className="center">
                 <img className="logo" src={logo1} alt="github logo" />
                 <img src={logo2} alt="github logo" />
-                <h3 className="added-users">
-                    Users Added :{" "}
-                    {JSON.parse(localStorage.getItem("users")).length / 2}
-                </h3>
+                <h3 className="added-users">Users Added : {users_added / 2}</h3>
             </header>
             <Search getQuery={(q) => setQuery(q)} />
             <div className="main">
